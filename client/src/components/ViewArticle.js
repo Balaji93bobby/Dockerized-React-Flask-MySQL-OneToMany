@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from "axios"
 import { GoogleMap, useLoadScript } from "@react-google-maps/api"
+import { Link } from "@reach/router";
 
 const mapContainerStyle = {
     width: "40vw",
@@ -67,14 +68,15 @@ const ViewArticle = ({id}) => {
         <div>
             <br />
             <div className="map">
-                <h1>Location: {article.title}</h1>
+                <h1 className="text-3xl font-bold bg-tahiti-500 text-midnight mb-4">Location: {article.title}</h1>
 
                 <img className="h-40" src={`${cityImage}`} alt="img" />
-                <p>Posted By: <span style={{fontWeight: "bolder"}}>{article.first_name} {article.last_name}</span></p>
-                <p>Email Address: <span style={{fontWeight: "bolder"}}>{article.email}</span></p>
-                <h3>Travel Experience:</h3>
-                <p style={{marginTop: "0px"}}>{article.body}</p>
-                <hr style={{ backgroundColor: "green", height: 2, width: "100%"}} />
+                <p className="mb-4 text-lg">Posted By: <Link className="text-green-600 text-lg w-36 rounded bg-black" to={`/bloggers/view/${article.blogger_id}`}>{article.first_name} {article.last_name}</Link></p>
+                <p className="mb-2 text-lg">Email Address: <span className="w-46 rounded bg-black text-white text-lg">{article.email}</span></p>
+                <h3 className="mb-2 text-lg">Travel Experience:</h3>
+                <p>{article.body}</p>
+
+                <hr className="bg-black w-full"/>
                 <GoogleMap mapContainerStyle={mapContainerStyle} zoom={10} center={center} /> 
     
             </div>
