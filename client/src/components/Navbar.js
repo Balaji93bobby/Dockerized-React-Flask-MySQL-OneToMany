@@ -13,9 +13,9 @@ const Navbar = () => {
     }
     return (
         <div>
-            <header className="site-header">
+            <header className="relative">
             <nav className="bg-steel">
-                <div className="bg-steel border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
+                <div className="bg-steel  px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
                     <h3 className="text-3xl font-bold bg-tahiti-500 text-silver">Travel Blog</h3>
 
                     <div className="container flex flex-wrap justify-between items-center mx-auto">

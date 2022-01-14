@@ -26,7 +26,7 @@ const ArticleList = ({submitted, setSubmitted}) => {
 
 console.log(articles)
     return (
-    <div className="relative min-h-screen md:flex">
+    <div className="min-h-screen md:flex">
 
         <div className="flex-1 p-10 mb-400">
                 <h2 className="text-3xl font-bold bg-tahiti-500 text-midnight mb-4">Travel Blog Posts</h2>
@@ -38,7 +38,7 @@ console.log(articles)
                                         <div className="flex flex-col items-center justify-center article-metadata bg-steel">
                                             <h2>{ x.title }</h2>
                                             <div className="flex flex-row items-center justify-center">
-                                                <p>Posted by: <a  className="text-white" href={`/bloggers/view/${x.blogger_id}`}>{ x.first_name }</a> o</p>
+                                                <p>Posted by: <a  className="text-green-600 text-lg w-36 rounded bg-black" href={`/bloggers/view/${x.blogger_id}`}>{ x.first_name }</a> o</p>
                                                 <p className="text-muted">n { x.created_at }</p>
                                             </div>
                                         </div>

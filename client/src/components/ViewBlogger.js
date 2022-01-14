@@ -35,7 +35,7 @@ export const ViewBlogger = ({id}) => {
                             
                             <div key={i} className="media content-section m-2 flex-auto w-96">
                                     <div className="flex flex-col items-center justify-center mb-1 bg-steel">
-                                        <div className="flex flex-row items-center justify-center ">
+                                        <div className="flex flex-row items-center justify-center">
                                             <p className="text-muted">Post on: { x.created_at }</p>
                                         </div>
                                     </div>
