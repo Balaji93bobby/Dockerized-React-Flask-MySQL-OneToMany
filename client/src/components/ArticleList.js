@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import axios from "axios";
 import { Link } from "@reach/router";
 import SideBar from "./SideBar";
@@ -24,6 +25,8 @@ const ArticleList = ({submitted, setSubmitted}) => {
         
 }
 
+const sortedArticles = articles.slice().sort((a, b) => b.date - a.date)
+
 console.log(articles)
     return (
     <div className="min-h-screen md:flex">
@@ -31,7 +34,7 @@ console.log(articles)
         <div className="flex-1 p-10 mb-400">
                 <h2 className="text-3xl font-bold bg-tahiti-500 text-midnight mb-4">Travel Blog Posts</h2>
                     { articles ? 
-                    articles.map((x, i) => {
+                    sortedArticles.map((x, i) => {
                         return (
                             <div key={i} className="media content-section m-2">
                                             
