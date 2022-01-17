@@ -25,7 +25,11 @@ const ArticleList = ({submitted, setSubmitted}) => {
         
 }
 
-const sortedArticles = articles.slice().sort((a, b) => b.date - a.date)
+//* Sort by created_at(reversed)
+const sortedArticles = articles.sort((a,b) => {
+    return new Date(a.created_at).getTime() - 
+        new Date(b.created_at).getTime()
+}).reverse();
 
 console.log(articles)
     return (

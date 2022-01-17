@@ -70,9 +70,9 @@ const ViewArticle = ({id}) => {
             <div className="map">
                 <h1 className="text-3xl font-bold bg-tahiti-500 text-midnight pt-4 my-4 break-normal">Location: {article.title}</h1>
 
-                <img className="h-40" src={`${cityImage}`} alt="img" />
-                <p className="mb-4 text-lg">Posted By: <Link className="text-green-600 text-lg w-36 rounded bg-black" to={`/bloggers/view/${article.blogger_id}`}>{article.first_name} {article.last_name}</Link></p>
-                <p className="mb-2 text-lg">Email Address: <span className="w-46 rounded bg-black text-white text-lg">{article.email}</span></p>
+                <img className="w-80 h-40" src={`${cityImage}`} alt="img" />
+                <p className="mb-4 text-lg bg-gray-600 rounded px-4">Posted By: <Link className="text-green-600 text-lg w-36 rounded bg-black" to={`/bloggers/view/${article.blogger_id}`}>{article.first_name} {article.last_name}</Link></p>
+                <p className="mb-2 text-lg bg-gray-600 rounded px-4">Email Address: <span className="w-46 rounded  text-white text-lg">{article.email}</span></p>
                 <h3 className="mb-2 text-white text-lg bg-green-500 rounded w-2/12">Travel Experience</h3>
 
                     <p className="text-white bg-green-800 w-2/12 text-center h-fit rounded mb-4">{article.body}</p>
