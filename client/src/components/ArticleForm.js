@@ -23,9 +23,9 @@ const ArticleForm = ({setSubmitted, submitted}) => {
     return (
         <div>
             <div className="flex items-center justify-center">
-                <div class="h-44 w-full bg-gradient-to-r from-sky-500 to-green-500"></div>
-                <img className="h-44" src="https://www.nycgovparks.org/pagefiles/75/citywide-priorities.jpg" alt="city" />
-                <div class="h-44 w-full bg-gradient-to-r from-sky-500 to-green-500"></div>
+                <div class="h-44 w-full bg-gradient-to-b from-sky-500 to-silver"></div>
+                <img className="h-44 rounded-lg rounded-t-none" src="https://www.nycgovparks.org/pagefiles/75/citywide-priorities.jpg" alt="city" />
+                <div class="h-44 w-full bg-gradient-to-b from-sky-500 to-silver"></div>
             </div>
             
             <h2 className="text-3xl font-bold bg-tahiti-500 text-midnight mb-4">Add a Travel Blog!</h2>
