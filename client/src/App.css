@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=ZCOOL+KuaiLe&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,6 +9,7 @@
 
 .font-head {
   font-family: 'Architects Daughter', cursive;
+  font-family: 'ZCOOL KuaiLe', cursive;
 }
 
 .content-section {

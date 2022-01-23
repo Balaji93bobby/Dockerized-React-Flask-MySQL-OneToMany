@@ -1,7 +1,7 @@
 import axios from "axios"
 import { navigate } from "@reach/router";
 import { Link } from "@reach/router";
-import '../App.css';
+
 
 const Navbar = () => {
     
