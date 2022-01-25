@@ -4,8 +4,8 @@ import { GoogleMap, useLoadScript } from "@react-google-maps/api"
 import { Link } from "@reach/router";
 
 const mapContainerStyle = {
-    width: "40vw",
-    height: "40vh"
+    width: "99vw",
+    height: "42vh"
 }
 
 const Key = "dNRDTO6hjvETgxCteuW40aYSlFl7_HSXBMFy_7N6FRM"
@@ -77,8 +77,12 @@ const ViewArticle = ({id}) => {
 
                     <p className="text-white bg-green-800 w-2/12 text-center h-fit rounded mb-4">{article.body}</p>
 
-                {/* <hr className="bg-black w-full"/> */}
-                <GoogleMap mapContainerStyle={mapContainerStyle} zoom={10} center={center} /> 
+
+                <div className="flex flex-row">
+                    <div className="h-full w-full bg-gradient-to-b from-silver to-sky-500"></div>
+                    <GoogleMap mapContainerStyle={mapContainerStyle} zoom={10} center={center} /> 
+                    <div className="h-full w-full bg-gradient-to-b from-silver to-sky-500"></div>
+                </div>
     
             </div>
         </div>
