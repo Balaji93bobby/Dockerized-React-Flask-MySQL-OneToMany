@@ -18,11 +18,13 @@ export const ViewBlogger = ({id}) => {
             <h1 className="text-3xl font-bold bg-tahiti-500 text-midnight mb-4">{blogger[0].first_name} {blogger[0].last_name}</h1>
             <h2>{blogger[0].email}</h2>
 
-            <div className="relative w-24 h-24 mb-10">
+            {/* <div className="relative w-24 h-24 mb-10"> */}
+            <div className="relative w-36 h-36 mb-10">   
             { blogger[0].image ===  "default" ?
-            <img className="rounded-full border border-gray-100 shadow-sm" src="https://www.computerhope.com/jargon/g/guest-user.jpg" alt="blogger" />
+            <img className="rounded-full border border-gray-100 " src="https://i.pinimg.com/474x/ee/f4/4c/eef44ce61bce4df845e5d3f390269c37--woman-silhouette-avatar.jpg" alt="blogger" />
+            
             :
-            <img className="rounded-full border border-gray-100 shadow-sm" src={`${ blogger[0].image }`} alt="blogger" />}
+            <img className="rounded-full border border-gray-100 " src={`${ blogger[0].image }`} alt="blogger" />}
             <div className="absolute top-0 right-0 h-6 w-6 my-1 border-4 border-white rounded-full bg-green-400 z-2"></div>
             </div>
             <Link className="text-yellow-600 w-36 rounded bg-black" to={`/bloggers/edit/${blogger[0].blogger_id}`}>Update Profile</Link>
