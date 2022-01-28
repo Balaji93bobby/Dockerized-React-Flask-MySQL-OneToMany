@@ -45,6 +45,9 @@ console.log(articles)
                                         <div className="flex flex-col items-center justify-center article-metadata bg-steel">
                                             <h2>{ x.title }</h2>
                                             <div className="flex flex-row items-center justify-center">
+                                            { x.image ===  "default" ?
+                                            <img className="h-12 w-12 rounded-full mb-2 mr-2" src="https://i.pinimg.com/474x/ee/f4/4c/eef44ce61bce4df845e5d3f390269c37--woman-silhouette-avatar.jpg" alt="blogger"  />:
+                                            <img className="h-12 w-12 rounded-full mb-2 mr-2" src={`${ x.image }`} alt="blogger"  />}
                                                 <p>Posted by: <a  className="text-green-600 text-lg w-36 rounded bg-black" href={`/bloggers/view/${x.blogger_id}`}>{ x.first_name }</a> o</p>
                                                 <p className="text-muted">n { x.created_at }</p>
                                             </div>
