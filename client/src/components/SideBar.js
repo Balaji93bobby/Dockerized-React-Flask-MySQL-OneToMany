@@ -8,7 +8,7 @@ const SideBar = () => {
                     <div className="bg-blue text-white">
                         <ul className="block py-2 5 px-4">
                             <li className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">Latest Posts - # - Under Construction</li>
-                            <a href="/all_users"><li className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">User List</li></a>
+                            <a href="/all_bloggers"><li className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">User List</li></a>
                             <li className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">Calendars - # - Under Construction</li>
                             <li className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">etc - # - Who Knows?</li>
                         </ul>

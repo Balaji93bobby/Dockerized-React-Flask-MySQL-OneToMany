@@ -20,7 +20,7 @@ export const ViewBlogger = ({id}) => {
 
             {/* <div className="relative w-24 h-24 mb-10"> */}
             <div className="relative mb-10">   
-            { blogger[0].image ===  "default" ?
+            { blogger[0].image ===  "default" || blogger[0].image == null ?
             <img className="rounded-full border border-gray-100 h-48 w-48" src="https://i.pinimg.com/474x/ee/f4/4c/eef44ce61bce4df845e5d3f390269c37--woman-silhouette-avatar.jpg" alt="blogger" />
             
             :

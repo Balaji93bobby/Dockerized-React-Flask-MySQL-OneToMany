@@ -14,6 +14,7 @@ import ArticleList from "./components/ArticleList";
 import { ViewBlogger } from "./components/ViewBlogger";
 import BloggerForm from "./components/BloggerForm";
 import EditBlogger from "./components/EditBlogger";
+import AllBloggers from "./components/AllBloggers";
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <EditBlogger path="/bloggers/edit/:id" />
         <BloggerForm path="/bloggers/register" />
         <ArticleForm path="/create_article" setSubmitted={setSubmitted} submitted={submitted} />
+        <AllBloggers path="/all_bloggers" />
       </Router>
       
     </div>
