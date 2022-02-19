@@ -337,24 +337,31 @@ def get_articles_with_blogger(id):
 
 
 #@------------RATINGS---------------------
-
+#! NOT READY - NEEDS TO BE LOOKED OVER, RELATIONSHIPS ETC - #* Double check
 # class Ratings(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)
-#     first_name = db.Column(db.String(255))
-#     last_name = db.Column(db.String(255))
-#     email = db.Column(db.String(255))
-#     password = db.Column(db.String(255), nullable=False)
-#     image = db.Column(db.Text(), default="default.jpg")
+#     rating = db.Column(db.Integer) #* Double check
 #     created_at = db.Column(db.DateTime, default = datetime.datetime.now())
 
-#     articles = db.relationship('Articles', back_populates="bloggers", cascade='all, delete, delete-orphan', passive_deletes=True)
+##     articles = db.relationship('Articles', back_populates="bloggers", cascade='all, delete, delete-orphan', passive_deletes=True)##
 
-#     def __init__(self, first_name, last_name, email, password, image):
-#         self.first_name = first_name
-#         self.last_name = last_name
-#         self.email = email
-#         self.password = password
-#         self.image = image
+#     def __init__(self, rating):
+#         self.rating = rating
+
+# class RatingSchema(ma.Schema):
+#     class Meta:
+#         fields = ("id", "rating","created_at")
+
+# # For All
+# ratings_schema = RatingSchema(many=True)
+# # For One
+# ratings_schema = RatingSchema()
+
+# class ArticleBloggerRatingSchema(ma.Schema): #* Maybe just adjust the one under ArticleSchema?
+#     class Meta:
+#         fields = ("id", "blogger_id", "title", "body", "created_at", "blogger_id", "first_name", "last_name", "email", "image", "rating")
+
+# test_schema = ArticleBloggerRatingSchema(many=True)
 
 #@----------------------------------
 
