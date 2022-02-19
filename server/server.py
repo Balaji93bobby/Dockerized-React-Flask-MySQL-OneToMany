@@ -335,6 +335,27 @@ def get_articles_with_blogger(id):
 #     print(results)
 #     return test_schema.jsonify(results)
 
+
+#@------------RATINGS---------------------
+
+# class Ratings(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     first_name = db.Column(db.String(255))
+#     last_name = db.Column(db.String(255))
+#     email = db.Column(db.String(255))
+#     password = db.Column(db.String(255), nullable=False)
+#     image = db.Column(db.Text(), default="default.jpg")
+#     created_at = db.Column(db.DateTime, default = datetime.datetime.now())
+
+#     articles = db.relationship('Articles', back_populates="bloggers", cascade='all, delete, delete-orphan', passive_deletes=True)
+
+#     def __init__(self, first_name, last_name, email, password, image):
+#         self.first_name = first_name
+#         self.last_name = last_name
+#         self.email = email
+#         self.password = password
+#         self.image = image
+
 #@----------------------------------
 
 # if __name__ == '__main__':
