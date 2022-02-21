@@ -37,6 +37,9 @@ bcrypt = Bcrypt(app)
 
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+
+
+
 #@------------BLOGGERS---------------------
 
 class Bloggers(db.Model):
@@ -49,6 +52,7 @@ class Bloggers(db.Model):
     created_at = db.Column(db.DateTime, default = datetime.datetime.now())
 
     articles = db.relationship('Articles', back_populates="bloggers", cascade='all, delete, delete-orphan', passive_deletes=True)
+    #* ratings = db.relationship('Ratings', back_populates="ratings", cascade='all, delete, delete-orphan', passive_deletes=True)
 
     def __init__(self, first_name, last_name, email, password, image):
         self.first_name = first_name
@@ -222,6 +226,9 @@ class Articles(db.Model):
     created_at = db.Column(db.DateTime, default = datetime.datetime.now())
 
     bloggers = db.relationship("Bloggers", back_populates="articles", passive_deletes=True)
+    #* ratings = db.relationship("Ratings", back_populates="ratings", passive_deletes=True)
+
+    #! ratings = db.relationship("Group", secondary=users_ratings, back_populates="users")
 
     def __init__(self, blogger_id, title, body):
         self.blogger_id = blogger_id
@@ -323,6 +330,39 @@ def get_articles_with_blogger(id):
     print(results)
     return test_schema.jsonify(results)
 
+
+#@------------RATINGS---------------------
+#! NOT READY - NEEDS TO BE LOOKED OVER, RELATIONSHIPS ETC - #* Double check
+# class Ratings(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     blogger_id = db.Column(db.Integer, db.ForeignKey('bloggers.id'), ondelete='cascade');
+#     article_id = db.Column(db.Integer, db.ForeignKey('articles.id'), ondelete='cascade');
+#     rating = db.Column(db.Integer) #* Double check
+#     created_at = db.Column(db.DateTime, default = datetime.datetime.now())
+
+#     bloggers = db.relationship('Bloggers', back_populates="bloggers", passive_deletes=True)
+#     articles = db.relationship('Articles', back_populates="articles", passive_deletes=True)
+
+#     def __init__(self, rating):
+#         self.rating = rating
+
+# class RatingSchema(ma.Schema):
+#     class Meta:
+#         fields = ("id", "blogger_id", "article_id", "rating","created_at")
+
+# # For All
+# ratings_schema = RatingSchema(many=True)
+# # For One
+# ratings_schema = RatingSchema()
+
+# class ArticleBloggerRatingSchema(ma.Schema): #* Maybe just adjust the one under ArticleSchema?
+#     class Meta:
+#         fields = ("id", "blogger_id", "article_id", "title", "body", "created_at", "first_name", "last_name", "email", "image", "rating")
+
+# test_schema = ArticleBloggerRatingSchema(many=True)
+
+#@----------------------------------
+
 # @app.route("/bloggers_articles/<int:id>", methods=["GET"])
 # def get_blogger_with_articles(id):
 
@@ -336,34 +376,7 @@ def get_articles_with_blogger(id):
 #     return test_schema.jsonify(results)
 
 
-#@------------RATINGS---------------------
-#! NOT READY - NEEDS TO BE LOOKED OVER, RELATIONSHIPS ETC - #* Double check
-# class Ratings(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     rating = db.Column(db.Integer) #* Double check
-#     created_at = db.Column(db.DateTime, default = datetime.datetime.now())
 
-##     articles = db.relationship('Articles', back_populates="bloggers", cascade='all, delete, delete-orphan', passive_deletes=True)##
-
-#     def __init__(self, rating):
-#         self.rating = rating
-
-# class RatingSchema(ma.Schema):
-#     class Meta:
-#         fields = ("id", "rating","created_at")
-
-# # For All
-# ratings_schema = RatingSchema(many=True)
-# # For One
-# ratings_schema = RatingSchema()
-
-# class ArticleBloggerRatingSchema(ma.Schema): #* Maybe just adjust the one under ArticleSchema?
-#     class Meta:
-#         fields = ("id", "blogger_id", "title", "body", "created_at", "blogger_id", "first_name", "last_name", "email", "image", "rating")
-
-# test_schema = ArticleBloggerRatingSchema(many=True)
-
-#@----------------------------------
 
 # if __name__ == '__main__':
 #     manager.run()
