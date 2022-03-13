@@ -20,13 +20,15 @@ from flask_marshmallow import Marshmallow
 app = Flask(__name__)
 app.secret_key = KEY
 
-app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql://root:{PASS}@localhost/react_flask_mysql"
+# app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql://root:{PASS}@localhost/react_flask_mysql"
+app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql://root:root@mysql/react_flask_mysql"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
-cors = CORS(app, supports_credentials=True)
+cors = CORS(app, supports_credentials=True, resources={r"/*": {"origins": "*"}})
+# CORS(app)
 
 migrate = Migrate(app, db)
 bcrypt = Bcrypt(app)
@@ -78,7 +80,7 @@ blogger_schema = BloggerSchema()
 #@----------------------------------
 
 # Register
-@app.route("/bloggers/register", methods=["POST"])
+@app.route("/api/bloggers/register", methods=["POST"])
 def register():
 
 
@@ -120,7 +122,7 @@ def register():
 
 
 # Login
-@app.route("/bloggers/login", methods=["POST"])
+@app.route("/api/bloggers/login", methods=["POST"])
 def login():
     email = request.json["email"]
 
@@ -143,26 +145,26 @@ def login():
     return blogger_schema.jsonify(user)
 
 # Logout
-@app.route("/logout")
+@app.route("/api/logout")
 def logout():
     session['logged_in'] = False
     return "logged out"
 
 # Get All
-@app.route("/bloggers", methods=["GET"])
+@app.route("/api/bloggers", methods=["GET"])
 def get_all_bloggers():
     all_bloggers = Bloggers.query.all()
     results = bloggers_schema.dump(all_bloggers)
     return jsonify(results)
 
 # Get One
-@app.route("/bloggers/<int:id>", methods=["GET"])
+@app.route("/api/bloggers/<int:id>", methods=["GET"])
 def get_one_blogger(id):
     one_blogger = Bloggers.query.get(id)
     return blogger_schema.jsonify(one_blogger)
 
 # Create
-# @app.route("/bloggers/create", methods=["POST"])
+# @app.route("/api/bloggers/create", methods=["POST"])
 # def createBlogger():
 #     first_name = request.json["first_name"]
 #     last_name = request.json["last_name"]
@@ -178,7 +180,7 @@ def get_one_blogger(id):
 #     return blogger_schema.jsonify(bloggers)
 
 # Update
-@app.route("/bloggers/update/<int:id>", methods=["PUT"])
+@app.route("/api/bloggers/update/<int:id>", methods=["PUT"])
 def update_blogger(id):
     blogger = Bloggers.query.get(id)
 
@@ -196,14 +198,14 @@ def update_blogger(id):
     return blogger_schema.jsonify(blogger)
 
 # Delete
-@app.route("/bloggers/delete/<int:id>", methods=["DELETE"])
+@app.route("/api/bloggers/delete/<int:id>", methods=["DELETE"])
 def delete_blogger(id):
     blogger = Bloggers.query.get(id)
     db.session.delete(blogger)
     db.session.commit()
     return blogger_schema.jsonify(blogger)
 
-@app.route("/bloggers_articles/<int:id>", methods=["GET"])
+@app.route("/api/bloggers_articles/<int:id>", methods=["GET"])
 def get_blogger_with_articles(id):
 
 
@@ -255,7 +257,7 @@ test_schema = ArticleBloggerSchema(many=True)
 
 
 # Get All
-@app.route("/articles", methods=["GET"])
+@app.route("/api/articles", methods=["GET"])
 def get_all():
     # all_articles = Articles.query.all()
     sql = text(f"SELECT * FROM bloggers JOIN articles on articles.blogger_id = bloggers.id WHERE articles.blogger_id = bloggers.id;")
@@ -265,14 +267,14 @@ def get_all():
     return test_schema.jsonify(results2)
 
 # Get One
-@app.route("/articles/<int:id>", methods=["GET"])
+@app.route("/api/articles/<int:id>", methods=["GET"])
 def get_one(id):
     one_article = Articles.query.get(id)
     print(one_article)
     return article_schema.jsonify(one_article)
 
 # Create
-@app.route("/articles/create", methods=["POST"])
+@app.route("/api/articles/create", methods=["POST"])
 def create():
     if "blogger_ID" in session:
         print("hello")
@@ -298,7 +300,7 @@ def create():
     return article_schema.jsonify(articles)
 
 # Update
-@app.route("/articles/update/<int:id>", methods=["PUT"])
+@app.route("/api/articles/update/<int:id>", methods=["PUT"])
 def update(id):
     article = Articles.query.get(id)
 
@@ -312,14 +314,14 @@ def update(id):
     return article_schema.jsonify(article)
 
 # Delete
-@app.route("/articles/delete/<int:id>", methods=["DELETE"])
+@app.route("/api/articles/delete/<int:id>", methods=["DELETE"])
 def delete(id):
     article = Articles.query.get(id)
     db.session.delete(article)
     db.session.commit()
     return article_schema.jsonify(article)
 
-@app.route("/articles_bloggers/<int:id>", methods=["GET"])
+@app.route("/api/articles_bloggers/<int:id>", methods=["GET"])
 def get_articles_with_blogger(id):
 
     sql = text(f"SELECT * FROM articles LEFT JOIN bloggers on bloggers.id = articles.blogger_id WHERE articles.id = {id};")
@@ -375,7 +377,7 @@ def get_articles_with_blogger(id):
 #     print(results)
 #     return test_schema.jsonify(results)
 
-
+db.create_all()
 
 
 # if __name__ == '__main__':

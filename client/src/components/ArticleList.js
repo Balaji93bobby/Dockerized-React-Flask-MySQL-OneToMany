@@ -8,7 +8,7 @@ const ArticleList = ({submitted, setSubmitted}) => {
 
     useEffect(() => {
         axios
-            .get("/articles")
+            .get("/api/articles")
             .then((res) => {
                 console.log(res);
                 setArticles(res.data);
@@ -17,7 +17,7 @@ const ArticleList = ({submitted, setSubmitted}) => {
     }, [submitted]);
 
     const deleteArticle = (id) => {
-        axios.delete(`/articles/delete/${id}`)
+        axios.delete(`/api/articles/delete/${id}`)
         .then(res => {
             console.log(res);
             setSubmitted(!submitted)})

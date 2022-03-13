@@ -6,7 +6,7 @@ export const ViewBlogger = ({id}) => {
     const [blogger, setBlogger] = useState([{}])
 
     useEffect(() => {
-        axios.get(`/bloggers_articles/${id}`)
+        axios.get(`/api/bloggers_articles/${id}`)
             .then(res => {console.log(res);
                 setBlogger(res.data);})
             .catch(err => {console.log(err)})

@@ -6,7 +6,7 @@ const EditArticle = ({id}) => {
     const [body, setBody] = useState("")
 
     useEffect(() => {
-        axios.get(`/articles/${id}`)
+        axios.get(`/api/articles/${id}`)
             .then(res => {console.log(res.data);
                 setTitle(res.data.title);
                 setBody(res.data.body);})
@@ -15,7 +15,7 @@ const EditArticle = ({id}) => {
 
     const updateArticle = (e) => {
         e.preventDefault();
-        axios.put(`/articles/update/${id}`, {title, body})
+        axios.put(`/api/articles/update/${id}`, {title, body})
         .then(res => {console.log(res);navigate("/dashboard")})
         .catch(err => {console.log(err)})
     }

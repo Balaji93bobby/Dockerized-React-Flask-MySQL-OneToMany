@@ -10,7 +10,7 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault()
-        axios.post("/bloggers/login", {email, password})
+        axios.post("/api/bloggers/login", {email, password})
             .then(res => {console.log(res); navigate("/dashboard")})
             .catch(err => {console.log(err.response.data); setErrors(err.response.data); navigate("/")})
     }

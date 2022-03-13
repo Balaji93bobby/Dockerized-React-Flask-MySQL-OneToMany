@@ -23,7 +23,7 @@ const ViewArticle = ({id}) => {
     }
 
     useEffect(() => {
-        axios.get(`/articles_bloggers/${id}`)
+        axios.get(`/api/articles_bloggers/${id}`)
             .then(res => {;
                 setArticle(res.data[0]);})
             .catch(err => {console.log(err)})

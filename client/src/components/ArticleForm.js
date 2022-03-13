@@ -8,7 +8,7 @@ const ArticleForm = ({setSubmitted, submitted}) => {
 
     const addArticle = (e) => {
         e.preventDefault()
-        axios.post("/articles/create", { 
+        axios.post("/api/articles/create", { 
             title, body
         })
         .then(res => {

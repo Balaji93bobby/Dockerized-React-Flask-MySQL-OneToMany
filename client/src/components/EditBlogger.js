@@ -9,7 +9,7 @@ const EditBlogger = ({id}) => {
     const [image, setImage] = useState("")
 
     useEffect(() => {
-        axios.get(`/bloggers/${id}`)
+        axios.get(`/api/bloggers/${id}`)
             .then(res => {
                 console.log(res.data);
                 setFirstName(res.data.first_name);
@@ -22,7 +22,7 @@ const EditBlogger = ({id}) => {
 
     const updateBlogger = (e) => {
         e.preventDefault();
-        axios.put(`/bloggers/update/${id}`, {first_name, last_name, email, image})
+        axios.put(`/api/bloggers/update/${id}`, {first_name, last_name, email, image})
         .then(res => {console.log(res);navigate(`/bloggers/view/${id}`)})
         .catch(err => {console.log(err)})
     }

@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios"
-import { Link } from "@reach/router";
+// import { Link } from "@reach/router";
 
 const AllBloggers = () => {
 
     const [bloggers, setBlogger] = useState([])
 
     useEffect(() => {
-        axios.get(`/bloggers`)
+        axios.get(`/api/bloggers`)
             .then(res => {console.log(res);
                 setBlogger(res.data);})
             .catch(err => {console.log(err)})

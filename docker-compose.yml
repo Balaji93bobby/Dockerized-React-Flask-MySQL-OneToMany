@@ -1,0 +1,78 @@
+# version: "2"
+# services:
+#   api:
+#     build:
+#       context: /server
+#       dockerfile: Dockerfile
+#     links:
+#       - db
+#     ports:
+#       - "5000:5000"
+#   db:
+#     image: mysql:8.0.28
+#     ports:
+#       - "32000:3306"
+#     environment:
+#       MYSQL_ROOT_PASSWORD: root
+#     volumes:
+#       - ./db:/docker-entrypoint-initdb.d/:ro
+
+#   client:
+#     build: 
+#       context: /client
+#       dockerfile: Dockerfile
+#     command: ["npm", "start"]
+#     volumes:
+#       - ./client:/frontend
+#       - node-modules:/frontend/node_modules
+#     environment:
+#       - NODE_ENV=development
+#     ports:
+#       - '3000:3000'
+#     depends_on:
+#       - api
+
+# volumes:
+#   node-modules:
+
+services:
+  api:
+    build:
+      context: /server
+      dockerfile: Dockerfile
+    volumes:
+      - ./server:/backend
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+    links:
+      - mysql
+    ports:
+      - "5000:5000"
+  client:
+    build: 
+      context: /client
+      dockerfile: Dockerfile
+
+    volumes:
+      - /frontend/node_modules
+      - ./client:/frontend
+    environment:
+      - NODE_ENV=development
+    ports:
+      - '3000:3000'
+    depends_on:
+      - api
+  mysql:
+    image: mysql:8.0.28
+    restart: always
+    volumes:
+      - ./mysql8:/docker-entrypoint-initdb.d/:ro
+    environment:
+      MYSQL_DATABASE: react_flask_mysql
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+volumes:
+  node-modules:

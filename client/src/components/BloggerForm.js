@@ -11,7 +11,7 @@ const BloggerForm = () => {
 
     const addBlogger = (e) => {
         e.preventDefault()
-        axios.post("/bloggers/register", {
+        axios.post("/api/bloggers/register", {
             first_name,
             last_name,
             email,
@@ -41,9 +41,9 @@ const BloggerForm = () => {
                 <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} className="form-input px-4 py-1 rounded-full" />
                 <br />
                 <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create Account</button>
-                <div class="border-top pt-3">
-                <small class="text-muted">
-                    Already Have An Account? <a class="ml-2" href="/">Sign In!</a>
+                <div className="border-top pt-3">
+                <small className="text-muted">
+                    Already Have An Account? <a className="ml-2" href="/">Sign In!</a>
                 </small>
             </div>
             </form>
