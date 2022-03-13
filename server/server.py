@@ -21,8 +21,8 @@ app = Flask(__name__)
 app.secret_key = KEY
 
 # app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql://root:{PASS}@localhost/react_flask_mysql"
-# app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql://root:root@mysql/react_flask_mysql"
-app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql://root:{PASS}@mysql/react_flask_mysql"
+app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql://root:root@mysql/react_flask_mysql"
+# app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql://root:{PASS}@mysql/react_flask_mysql"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 
