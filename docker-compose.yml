@@ -40,6 +40,8 @@ services:
     build:
       context: /server
       dockerfile: Dockerfile
+    # mem_limit: 128m
+    hostname: api
     volumes:
       - ./server:/backend
     environment:
@@ -50,9 +52,12 @@ services:
     ports:
       - "5000:5000"
   client:
+    stdin_open: true
     build: 
       context: /client
       dockerfile: Dockerfile
+    # mem_limit: 128m
+    hostname: client
 
     volumes:
       - /frontend/node_modules
@@ -76,9 +81,10 @@ services:
       - "3306:3306"
 
   nginx:
-    # image from DockerHub
-    image: liamjdesmond84/complex-nginx
-    mem_limit: 128m
+    build: 
+      context: /nginx
+      dockerfile: Dockerfile
+    # mem_limit: 128m
     hostname: nginx
     ports:
       - "80:80"
