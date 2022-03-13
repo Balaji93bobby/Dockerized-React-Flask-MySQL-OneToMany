@@ -74,5 +74,13 @@ services:
       MYSQL_ROOT_PASSWORD: root
     ports:
       - "3306:3306"
+
+  nginx:
+    # image from DockerHub
+    image: liamjdesmond84/complex-nginx
+    mem_limit: 128m
+    hostname: nginx
+    ports:
+      - "80:80"
 volumes:
   node-modules:

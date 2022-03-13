@@ -18,6 +18,6 @@ FROM nginx
 EXPOSE 3000
 
 # New default.conf file is changing the default port(80) that nginx listens on to 3000
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY ./default.conf /etc/nginx/conf.d/default.conf
 # Copying build from above into html folder
 COPY --from=0 /app/build /usr/share/nginx/html
