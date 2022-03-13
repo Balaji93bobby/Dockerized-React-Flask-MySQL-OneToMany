@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:latest as builder
 RUN mkdir /frontend
 WORKDIR /frontend
 
@@ -20,4 +20,4 @@ EXPOSE 3000
 # New default.conf file is changing the default port(80) that nginx listens on to 3000
 COPY ./default.conf /etc/nginx/conf.d/default.conf
 # Copying build from above into html folder
-COPY --from=0 /app/build /usr/share/nginx/html
+COPY --from=0 /frontend/build /usr/share/nginx/html
