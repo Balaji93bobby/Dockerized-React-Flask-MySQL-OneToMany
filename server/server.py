@@ -21,8 +21,8 @@ app = Flask(__name__)
 app.secret_key = KEY
 
 # app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql://root:{PASS}@localhost/react_flask_mysql"
+# app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql://root:root@mysql/react_flask_mysql"
 app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql://root:root@mysql/react_flask_mysql"
-# app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql://root:{PASS}@mysql/react_flask_mysql"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 
@@ -81,7 +81,7 @@ blogger_schema = BloggerSchema()
 #@----------------------------------
 
 # Register
-@app.route("/api/bloggers/register", methods=["POST"])
+@app.route("/api/bloggers/register", methods=['GET', 'POST'])
 def register():
 
 
@@ -123,7 +123,7 @@ def register():
 
 
 # Login
-@app.route("/api/bloggers/login", methods=["POST"])
+@app.route("/api/bloggers/login", methods=['GET', 'POST'])
 def login():
     email = request.json["email"]
 
@@ -165,7 +165,7 @@ def get_one_blogger(id):
     return blogger_schema.jsonify(one_blogger)
 
 # Create
-# @app.route("/api/bloggers/create", methods=["POST"])
+# @app.route("/api/bloggers/create", methods=['GET', 'POST'])
 # def createBlogger():
 #     first_name = request.json["first_name"]
 #     last_name = request.json["last_name"]
@@ -275,7 +275,7 @@ def get_one(id):
     return article_schema.jsonify(one_article)
 
 # Create
-@app.route("/api/articles/create", methods=["POST"])
+@app.route("/api/articles/create", methods=['GET', 'POST'])
 def create():
     if "blogger_ID" in session:
         print("hello")

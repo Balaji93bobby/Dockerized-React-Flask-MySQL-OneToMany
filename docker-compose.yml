@@ -6,6 +6,7 @@ services:
       dockerfile: Dockerfile
     # mem_limit: 128m
     hostname: api
+    restart: always
     volumes:
       - ./server:/backend
     environment:
@@ -15,6 +16,8 @@ services:
       - mysql
     ports:
       - "5000:5000"
+    depends_on:
+      - mysql
   client:
     stdin_open: true
     build: 
@@ -50,7 +53,14 @@ services:
       dockerfile: Dockerfile
     # mem_limit: 128m
     hostname: nginx
+    restart: unless-stopped
+    volumes:
+        - ../client/build:/usr/share/nginx/html
+        - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     ports:
       - "80:80"
+    depends_on:
+        - api
+        - client
 volumes:
   node-modules:
