@@ -4,7 +4,7 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
-    command: ["flask", "run", "--host=0.0.0.0"]
+    # command: ["flask", "run", "--host=0.0.0.0"]
     hostname: api
     restart: always
     volumes:
