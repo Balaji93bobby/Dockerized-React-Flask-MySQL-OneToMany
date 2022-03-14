@@ -12,7 +12,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import text
 from env import KEY, PASS
 #import error
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import datetime
 
 from flask_marshmallow import Marshmallow
@@ -29,7 +29,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 cors = CORS(app, supports_credentials=True, resources={r"/*": {"origins": "*"}})
-# CORS(app)
+CORS(app)
 
 migrate = Migrate(app, db)
 bcrypt = Bcrypt(app)
@@ -40,19 +40,19 @@ bcrypt = Bcrypt(app)
 
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['CORS_METHODS'] = ['GET', 'POST', 'PUT', 'DELETE']
-app.config['CORS_ORIGINS'] = ['https://api']
+app.config['CORS_ORIGINS'] = "*"
 
-app.config['CORS_ALLOW_HEADERS'] = [
-    "accept",
-    "accept-encoding",
-    "authorization",
-    "content-type",
-    "dnt",
-    "origin",
-    "user-agent",
-    "x-csrftoken",
-    "x-requested-with",
-]
+# app.config['CORS_ALLOW_HEADERS'] = [
+#     "accept",
+#     "accept-encoding",
+#     "authorization",
+#     "content-type",
+#     "dnt",
+#     "origin",
+#     "user-agent",
+#     "x-csrftoken",
+#     "x-requested-with",
+# ]
 
 #@------------BLOGGERS---------------------
 
@@ -93,9 +93,8 @@ blogger_schema = BloggerSchema()
 
 # Register
 @app.route("/bloggers/register", methods=['GET', 'POST'])
+@cross_origin()
 def register():
-
-
     first_name = request.json["first_name"]
     last_name = request.json["last_name"]
     form_email = request.json["email"]
@@ -135,6 +134,7 @@ def register():
 
 # Login
 @app.route("/bloggers/login", methods=['GET', 'POST'])
+@cross_origin()
 def login():
     email = request.json["email"]
 
@@ -158,12 +158,14 @@ def login():
 
 # Logout
 @app.route("/logout")
+@cross_origin()
 def logout():
     session['logged_in'] = False
     return "logged out"
 
 # Get All
 @app.route("/bloggers", methods=["GET"])
+@cross_origin()
 def get_all_bloggers():
     all_bloggers = Bloggers.query.all()
     results = bloggers_schema.dump(all_bloggers)
@@ -171,6 +173,7 @@ def get_all_bloggers():
 
 # Get One
 @app.route("/bloggers/<int:id>", methods=["GET"])
+@cross_origin()
 def get_one_blogger(id):
     one_blogger = Bloggers.query.get(id)
     return blogger_schema.jsonify(one_blogger)
@@ -193,6 +196,7 @@ def get_one_blogger(id):
 
 # Update
 @app.route("/bloggers/update/<int:id>", methods=["PUT"])
+@cross_origin()
 def update_blogger(id):
     blogger = Bloggers.query.get(id)
 
@@ -211,6 +215,7 @@ def update_blogger(id):
 
 # Delete
 @app.route("/bloggers/delete/<int:id>", methods=["DELETE"])
+@cross_origin()
 def delete_blogger(id):
     blogger = Bloggers.query.get(id)
     db.session.delete(blogger)
@@ -218,6 +223,7 @@ def delete_blogger(id):
     return blogger_schema.jsonify(blogger)
 
 @app.route("/bloggers_articles/<int:id>", methods=["GET"])
+@cross_origin()
 def get_blogger_with_articles(id):
 
 
@@ -270,6 +276,7 @@ test_schema = ArticleBloggerSchema(many=True)
 
 # Get All
 @app.route("/articles", methods=["GET"])
+@cross_origin()
 def get_all():
     # all_articles = Articles.query.all()
     sql = text(f"SELECT * FROM bloggers JOIN articles on articles.blogger_id = bloggers.id WHERE articles.blogger_id = bloggers.id;")
@@ -280,6 +287,7 @@ def get_all():
 
 # Get One
 @app.route("/articles/<int:id>", methods=["GET"])
+@cross_origin()
 def get_one(id):
     one_article = Articles.query.get(id)
     print(one_article)
@@ -287,6 +295,7 @@ def get_one(id):
 
 # Create
 @app.route("/articles/create", methods=['GET', 'POST'])
+@cross_origin()
 def create():
     if "blogger_ID" in session:
         print("hello")
@@ -313,6 +322,7 @@ def create():
 
 # Update
 @app.route("/articles/update/<int:id>", methods=["PUT"])
+@cross_origin()
 def update(id):
     article = Articles.query.get(id)
 
@@ -327,6 +337,7 @@ def update(id):
 
 # Delete
 @app.route("/articles/delete/<int:id>", methods=["DELETE"])
+@cross_origin()
 def delete(id):
     article = Articles.query.get(id)
     db.session.delete(article)
@@ -334,6 +345,7 @@ def delete(id):
     return article_schema.jsonify(article)
 
 @app.route("/articles_bloggers/<int:id>", methods=["GET"])
+@cross_origin()
 def get_articles_with_blogger(id):
 
     sql = text(f"SELECT * FROM articles LEFT JOIN bloggers on bloggers.id = articles.blogger_id WHERE articles.id = {id};")
