@@ -2,26 +2,26 @@
 services:
   api:
     build:
-      context: /server
+      context: ./server
       dockerfile: Dockerfile
     # mem_limit: 128m
     hostname: api
     restart: always
     volumes:
       - ./server:/backend
-    environment:
-      - FLASK_ENV=development
-      - FLASK_APP=app.py
+    # environment:
+    #   - FLASK_ENV=development
+    #   - FLASK_APP=server.py
     links:
       - mysql
-    ports:
-      - "5000:5000"
+    # ports:
+    #   - "5000:5000"
     depends_on:
       - mysql
   client:
     stdin_open: true
     build: 
-      context: /client
+      context: ./client
       dockerfile: Dockerfile
     # mem_limit: 128m
     hostname: client
@@ -49,16 +49,16 @@ services:
 
   nginx:
     build: 
-      context: /nginx
+      context: ./nginx
       dockerfile: Dockerfile
     # mem_limit: 128m
     hostname: nginx
-    restart: unless-stopped
+    restart: always
     volumes:
-        - ../client/build:/usr/share/nginx/html
+        - ./client/build:/usr/share/nginx/html
         - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     ports:
-      - "80:80"
+      - "3050:80"
     depends_on:
         - api
         - client
