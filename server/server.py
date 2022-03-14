@@ -39,9 +39,20 @@ bcrypt = Bcrypt(app)
 
 
 app.config['CORS_HEADERS'] = 'Content-Type'
+app.config['CORS_METHODS'] = ['GET', 'POST', 'PUT', 'DELETE']
+app.config['CORS_ORIGINS'] = ['https://api']
 
-
-
+app.config['CORS_ALLOW_HEADERS'] = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
 
 #@------------BLOGGERS---------------------
 
