@@ -21,7 +21,7 @@ app = Flask(__name__)
 app.secret_key = KEY
 
 # app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql://root:{PASS}@localhost/react_flask_mysql"
-# app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql://root:root@mysql/react_flask_mysql"
+
 app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql://root:root@mysql/react_flask_mysql"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
@@ -42,17 +42,6 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['CORS_METHODS'] = ['GET', 'POST', 'PUT', 'DELETE']
 app.config['CORS_ORIGINS'] = "*"
 
-# app.config['CORS_ALLOW_HEADERS'] = [
-#     "accept",
-#     "accept-encoding",
-#     "authorization",
-#     "content-type",
-#     "dnt",
-#     "origin",
-#     "user-agent",
-#     "x-csrftoken",
-#     "x-requested-with",
-# ]
 
 #@------------BLOGGERS---------------------
 
