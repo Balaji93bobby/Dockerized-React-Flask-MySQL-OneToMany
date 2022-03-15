@@ -9,8 +9,6 @@ services:
     restart: always
     volumes:
       - ./server:/backend
-    # links:
-    #   - mysql
     ports:
       - "5000:5000"
     depends_on:

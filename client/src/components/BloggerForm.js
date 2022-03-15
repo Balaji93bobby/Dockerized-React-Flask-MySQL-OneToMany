@@ -34,11 +34,11 @@ const BloggerForm = () => {
                 { errors &&
                 <p>{errors.LNmessage}</p>}
                 <label>Email</label>
-                <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} className="form-input px-4 py-1 rounded-full" />
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="form-input px-4 py-1 rounded-full" />
                 { errors &&
                 <p>{errors.Emailmessage}</p>}
                 <label>Password</label>
-                <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} className="form-input px-4 py-1 rounded-full" />
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-input px-4 py-1 rounded-full" />
                 <br />
                 <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create Account</button>
                 <div className="border-top pt-3">

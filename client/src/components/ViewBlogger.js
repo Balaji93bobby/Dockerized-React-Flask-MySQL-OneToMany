@@ -27,7 +27,7 @@ export const ViewBlogger = ({id}) => {
             <img className="rounded-full border border-gray-100 h-48 w-48" src={`${ blogger[0].image }`} alt="blogger" />}
             <div className="absolute right-4 top-4 h-6 w-6 my-1 border-4 border-white rounded-full bg-green-400 z-2"></div>
             </div>
-            <Link className="text-yellow-600 w-36 rounded bg-black" to={`/bloggers/edit/${blogger[0].blogger_id}`}>Update Profile</Link>
+            <Link className="text-yellow-600 w-36 rounded bg-black" to={`/bloggers/edit/${blogger[0].blogger_id}`}>Edit Profile</Link>
 
         <div className="flex-1 p-10 text-lg flex flex-col items-center justify-center">
         <h2>{blogger[0].first_name}'s Articles</h2>

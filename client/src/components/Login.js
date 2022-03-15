@@ -20,13 +20,13 @@ const Login = () => {
             <h2 className="text-3xl font-bold bg-tahiti-500 text-midnight mb-4">Sign In</h2>
             <form onSubmit={handleLogin} className="flex flex-col items-center justify-center"> 
                 <label>Please Enter Your Email</label>
-                <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} className="form-input px-4 py-1 rounded-full" />
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="form-input px-4 py-1 rounded-full" />
 
                 { errors &&
                 <p>{errors.Emailmessage}</p>}
 
                 <label>Please Enter Your Password</label>
-                <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} className="form-input px-4 py-1 rounded-full" />
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-input px-4 py-1 rounded-full" />
 
                 { errors &&
                 <p>{errors.Passwordmessage}</p>}
