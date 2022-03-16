@@ -2,7 +2,6 @@ FROM node:latest as builder
 RUN mkdir /frontend
 WORKDIR /frontend
 
-# Install the application's dependencies into the node_modules's cache directory.
 COPY package.json ./
 
 RUN npm install
@@ -12,7 +11,7 @@ COPY ./ ./
 
 RUN ["npm", "run", "build"]
 
-# nginx needed for deployment as production server
+
 FROM nginx:stable-alpine
 
 
