@@ -346,6 +346,9 @@ def get_articles_with_blogger(id):
     return test_schema.jsonify(results)
 
 
+
+#!!!!!!!!!!! FOR FUTURE USE !!!!!!!!!!!!!!#
+
 #@------------RATINGS---------------------
 #! NOT READY - NEEDS TO BE LOOKED OVER, RELATIONSHIPS ETC - #* Double check
 # class Ratings(db.Model):
