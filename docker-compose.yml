@@ -1,10 +1,11 @@
 version: "3"
 services:
   api:
-    build:
-      context: ./server
-      dockerfile: Dockerfile
-    # command: ["flask", "run", "--host=0.0.0.0"]
+    image: liamjdesmond84/react-flask-server
+    # build:
+    #   context: ./server
+    #   dockerfile: Dockerfile
+    # # command: ["flask", "run", "--host=0.0.0.0"]
     hostname: api
     restart: always
     volumes:
@@ -14,10 +15,11 @@ services:
     depends_on:
       - mysql
   client:
+    image: liamjdesmond84/react-flask-client
     stdin_open: true
-    build: 
-      context: ./client
-      dockerfile: Dockerfile
+    # build: 
+    #   context: ./client
+    #   dockerfile: Dockerfile
     hostname: client
     volumes:
       - /frontend/node_modules
