@@ -8,12 +8,17 @@ services:
     # # command: ["flask", "run", "--host=0.0.0.0"]
     hostname: api
     restart: always
-    volumes:
-      - ./server:/backend
+    environment:
+      DB_HOST: your-rds-endpoint
+      DB_PORT: 3306  # or the port your RDS instance is listening on
+      DB_NAME: react_flask_mysql  # your database name
+      DB_USER: your-rds-username
+      DB_PASSWORD: your-rds-password
     ports:
       - "5000:5000"
     depends_on:
-      - mysql
+      - client
+
   client:
     image: liamjdesmond84/react-flask-client
     stdin_open: true
@@ -28,34 +33,23 @@ services:
       - '3000:80'
     depends_on:
       - api
-  mysql:
-    image: mysql:8.0.28
-    restart: always
-    volumes:
-      - ./mysql8:/docker-entrypoint-initdb.d/:ro
-    environment:
-      MYSQL_DATABASE: react_flask_mysql
-      MYSQL_ROOT_USER: root
-      MYSQL_ROOT_PASSWORD: root
-    ports:
-      - "3306:3306"
-  
-  # For use as a stand alone front API-Gateway
-  
-  # nginx:
-  #   build: 
-  #     context: ./nginx
-  #     dockerfile: Dockerfile
-  #   # mem_limit: 128m
-  #   hostname: nginx
-  #   restart: always
-  #   volumes:
-  #       - ./client/build:/usr/share/nginx/html
-  #       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-  #   ports:
-  #     - "80:80"
-  #   depends_on:
-  #       - api
-  #       - client
-volumes:
-  node-modules:
+
+# Remove the mysql service as we're using RDS instead
+
+# For use as a stand alone front API-Gateway
+
+# nginx:
+#   build: 
+#     context: ./nginx
+#     dockerfile: Dockerfile
+#   # mem_limit: 128m
+#   hostname: nginx
+#   restart: always
+#   volumes:
+#       - ./client/build:/usr/share/nginx/html
+#       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+#   ports:
+#     - "80:80"
+#   depends_on:
+#       - api
+#       - client
