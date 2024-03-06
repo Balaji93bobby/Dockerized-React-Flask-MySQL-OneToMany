@@ -9,11 +9,11 @@ services:
     hostname: api
     restart: always
     environment:
-      DB_HOST: your-rds-endpoint
+      DB_HOST: database-1.c90i4e8sa4gm.ap-south-1.rds.amazonaws.com
       DB_PORT: 3306  # or the port your RDS instance is listening on
-      DB_NAME: react_flask_mysql  # your database name
-      DB_USER: your-rds-username
-      DB_PASSWORD: your-rds-password
+      DB_NAME: shop # your database name
+      DB_USER: admin
+      DB_PASSWORD: admin123
     ports:
       - "5000:5000"
     depends_on:
